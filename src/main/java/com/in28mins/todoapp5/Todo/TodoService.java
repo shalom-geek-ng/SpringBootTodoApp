@@ -18,4 +18,9 @@ public class TodoService {
 	public List<todo> todoMethod(){
 		return mytodo;
 	}
+	
+	public void displayTodo(String name,String description,LocalDate date,boolean done) {
+		todo todo = new todo(++count,name,description,date,done);
+		mytodo.add(todo);
+	}
 }

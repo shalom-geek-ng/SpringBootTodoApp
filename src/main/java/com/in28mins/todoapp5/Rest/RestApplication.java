@@ -1,5 +1,6 @@
 package com.in28mins.todoapp5.Rest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.in28mins.todoapp5.Authentication.AuthenticationService;
 import com.in28mins.todoapp5.Todo.TodoService;
 import com.in28mins.todoapp5.Todo.todo;
 
 @Controller
+@SessionAttributes("name")
 public class RestApplication {
 	@Autowired
 	private TodoService todoList;
@@ -47,5 +50,18 @@ public class RestApplication {
 			return "login";
 		}
 	}
+	
+	@RequestMapping(value="/addTodo", method=RequestMethod.GET)
+	public String addTodo(){
+		return "addmyTodo";
+	}
+	@RequestMapping(value="/addTodo", method=RequestMethod.POST)
+	public String getTodo(ModelMap model, @RequestParam String description){
+		 todoList.displayTodo((String)model.get("name"), description, LocalDate.now(), false);
+		 List <todo> todo = todoList.todoMethod();
+		 model.put("todo", todo);
+		return "todo";
+	}
+	
 
 }

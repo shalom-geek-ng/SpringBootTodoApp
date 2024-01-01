@@ -35,7 +35,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<button class="btn btn-success">Add Item</button>
+	<a href="/addTodo"><button class="btn btn-success">Add Item</button></a>
 	</div>
 	
 	<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
