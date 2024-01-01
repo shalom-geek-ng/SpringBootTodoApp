@@ -11,8 +11,32 @@
 
 </head>
 <body>
+<div class="container">
 	<h1>Welcome ${name }</h1>
-	Your todos are ${todo }
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Date</th>
+				<th>Done</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${todo }" var="todo">
+		<tr>
+			<td>${todo.id }</td>
+			<td>${todo.name }</td>
+			<td>${todo.description }</td>
+			<td>${todo.date }</td>
+			<td>${todo.done }</td>
+		</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+	<button class="btn btn-success">Add Item</button>
+	</div>
 	
 	<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 	<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
