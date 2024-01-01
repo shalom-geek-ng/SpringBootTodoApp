@@ -27,12 +27,12 @@ public class RestApplication {
 //	public String loggin() {
 //		return "loggin here";
 //	}
-	@RequestMapping(value="/loggin", method=RequestMethod.GET)
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 
 	public String loggin() {
 	    return "login";
 	}
-	@RequestMapping(value="/loggin", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String todo(@RequestParam String name, @RequestParam String password,
 			ModelMap model) {
 		if(authenticateUser.Authenticate(name, password)) {
