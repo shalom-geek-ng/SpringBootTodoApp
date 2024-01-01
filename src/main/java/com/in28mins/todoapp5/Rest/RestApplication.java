@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.in28mins.todoapp5.Authentication.AuthenticationService;
 import com.in28mins.todoapp5.Todo.TodoService;
 import com.in28mins.todoapp5.Todo.todo;
 
@@ -18,6 +19,8 @@ import com.in28mins.todoapp5.Todo.todo;
 public class RestApplication {
 	@Autowired
 	private TodoService todoList;
+	@Autowired
+	private AuthenticationService authenticateUser;
 	
 //	@RequestMapping("/Loggin")
 //	@ResponseBody
@@ -32,11 +35,17 @@ public class RestApplication {
 	@RequestMapping(value="/loggin", method=RequestMethod.POST)
 	public String todo(@RequestParam String name, @RequestParam String password,
 			ModelMap model) {
+		if(authenticateUser.Authenticate(name, password)) {
 		 List <todo> todo = todoList.todoMethod();
 		 model.put("todo", todo);
 		model.put("name", name);
 		model.put("password", password);
 		return "todo";
+		}
+		else {
+			model.put("Error", "Your password or userName is incorrect");
+			return "login";
+		}
 	}
 
 }
